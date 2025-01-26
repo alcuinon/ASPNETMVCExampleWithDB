@@ -5,6 +5,11 @@ namespace TodoAppDemo.Models
 {
     public partial class User
     {
+        public User()
+        {
+            News = new HashSet<News>();
+        }
+
         public int Id { get; set; }
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
@@ -13,6 +18,6 @@ namespace TodoAppDemo.Models
         public int Age { get; set; }
         public bool? IsActive { get; set; }
 
-        public virtual Task? Task { get; set; }
+        public virtual ICollection<News> News { get; set; }
     }
 }

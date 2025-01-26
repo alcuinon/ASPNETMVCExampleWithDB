@@ -3,18 +3,17 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using TodoAppDemo.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<DemoDBContext>(options =>
-                options
-                    .UseSqlServer(builder.Configuration.GetSection("ConnectionStrings:Default").Value,
-                        sql => sql.EnableRetryOnFailure())
-                    .EnableSensitiveDataLogging(), ServiceLifetime.Transient
-                );
+//builder.Services.AddDbContext<DemoDBContext>(options =>
+//                options
+//                    .UseSqlServer(builder.Configuration.GetSection("ConnectionStrings:Default").Value,
+//                        sql => sql.EnableRetryOnFailure())
+//                    .EnableSensitiveDataLogging(), ServiceLifetime.Transient
+//                );
 
 var app = builder.Build();
 

@@ -3,7 +3,6 @@
 
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using TodoAppDemo.Context;
 using TodoAppDemo.Models;
 
 namespace TodoAppDemo.Controllers
@@ -11,21 +10,16 @@ namespace TodoAppDemo.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly DemoDBContext _context;
 
-        public HomeController(ILogger<HomeController> logger, DemoDBContext context)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _context = context;
         }
 
         public IActionResult Index()
         {
-            var user = _context.Users
-                .Where(user => user.Firstname.StartsWith("Alyssa"))
-                .FirstOrDefault();
 
-            return View(user);
+            return View();
         }
 
         public IActionResult Privacy()

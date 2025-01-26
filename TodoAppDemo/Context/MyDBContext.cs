@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using TodoAppDemo.Models;
-using Task = TodoAppDemo.Models.Task;
 
 namespace TodoAppDemo.Context
 {
-    public partial class DemoDBContext : DbContext
+    public partial class MyDBContext : DbContext
     {
-        public DemoDBContext()
+        public MyDBContext()
         {
         }
 
-        public DemoDBContext(DbContextOptions<DemoDBContext> options)
+        public MyDBContext(DbContextOptions<MyDBContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<Task> Tasks { get; set; } = null!;
+        public virtual DbSet<News> News { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,27 +31,19 @@ namespace TodoAppDemo.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Task>(entity =>
+            modelBuilder.Entity<News>(entity =>
             {
-                entity.ToTable("Task");
-
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Body).HasMaxLength(500);
 
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");
 
-                entity.Property(e => e.Description).HasMaxLength(250);
+                entity.Property(e => e.Title).HasMaxLength(50);
 
-                entity.Property(e => e.Status)
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("(N'Todo')");
-
-                entity.Property(e => e.Title).HasMaxLength(100);
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Task)
-                    .HasForeignKey<Task>(d => d.Id)
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.News)
+                    .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Task_User");
+                    .HasConstraintName("FK_News_User");
             });
 
             modelBuilder.Entity<User>(entity =>
