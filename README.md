@@ -81,6 +81,12 @@ Add the following section to your `appsettings.json` file, replacing `YourDBName
     "Default": "Server=localhost;Database=YourDBName;Trusted_Connection=True;"
 }
 ```
+if you do Step #6.1 then do this intead
+```json
+"ConnectionStrings": {
+    "Default": "Data Source=YourServerName;Initial Catalog=YourDBName;Integrated Security=True;Trust Server Certificate=True;"
+}
+```
 
 ### 8. Configure the Database Context in `Program.cs`
 
