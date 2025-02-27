@@ -57,7 +57,7 @@ if you don't know how to get this `Data Source=YourServerName;Initial Catalog=Yo
 1. `Data Source=YourServerName` is the Server Name
 1. `Initial Catalog=YourDBName` is the Database Name
 
-to get the ServerName do this
+to get the Connection String do this
 
 1. On your Visual Studio Go to View -> Click Server Explorer
 2. It will show a side panel, click the Connect to Database Icon
@@ -69,8 +69,8 @@ to get the ServerName do this
 8. optional, you can try to Test Connection
 9. Click OK, and it will show on your Server Explorer Panel
 10. Right Click on your database, click properties
-11. It will prompt an another side panel called Solution Property and look for Connection String
-12. Copy that Connection String and paste that on the Scaffold command
+11. It will prompt an another side panel called Solution Explorer and look for Connection String field
+12. Copy that Connection String and paste that on the Scaffold command and try again the `STEP #6`
 
 
 ### 7. Update `appsettings.json`
