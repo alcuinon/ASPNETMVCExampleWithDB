@@ -69,7 +69,7 @@ to get the Connection String do this
 8. optional, you can try to Test Connection
 9. Click OK, and it will show on your Server Explorer Panel
 10. Right Click on your database, click properties
-11. It will prompt an another side panel called Solution Explorer and look for Connection String field
+11. It will prompt an another side panel called `Properties` and look for Connection String field
 12. Copy that Connection String and paste that on the Scaffold command and try again the `STEP #6`
 
 
