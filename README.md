@@ -43,35 +43,12 @@ if you see your Project Name Folder then do this, proceed to `Scaffold-DbContext
 cd YourProjectName
 ```
 Run the following command in the Package Manager Console, replacing `YourDBName` with the name of your database:
-```powershell
-Scaffold-DbContext "Server=localhost;Database=YourDBName;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Context -Context MyDBContext -f
-```
-or if not working do this
+1. `Data Source=YourServerName` Server name is located at the SQL Connect a Server
+2. `Initial Catalog=YourDBName` Change the "YourDBName" to your actual DB name
+
 ```powershell
 Scaffold-DbContext "Data Source=YourServerName;Initial Catalog=YourDBName;Integrated Security=True;Trust Server Certificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Context -Context MyDBContext -f
 ```
-
-### 6.1 How to Get the Connection String in your Local DB (if step #6 not working)
-
-if you don't know how to get this `Data Source=YourServerName;Initial Catalog=YourDBName;Integrated Security=True;Trust Server Certificate=True`
-1. `Data Source=YourServerName` is the Server Name
-1. `Initial Catalog=YourDBName` is the Database Name
-
-to get the Connection String do this
-
-1. On your Visual Studio Go to View -> Click Server Explorer
-2. It will show a side panel, click the Connect to Database Icon
-3. Select Microsoft SQL Server (sometimes this was already selected)
-4. Click the Down arrow on Server Name Field, wait until it shows the server name then click the server name
-5. Authentication should be Windows Authentication
-6. Mark check the Trust Server Certificate
-7. Select Database name by clicking the down arrow icon, wait again and choose the database
-8. optional, you can try to Test Connection
-9. Click OK, and it will show on your Server Explorer Panel
-10. Right Click on your database, click properties
-11. It will prompt an another side panel called `Properties` and look for Connection String field
-12. Copy that Connection String and paste that on the Scaffold command and try again the `STEP #6`
-
 
 ### 7. Update `appsettings.json`
 Add the following section to your `appsettings.json` file, replacing `YourDBName` with your database name:
@@ -104,3 +81,128 @@ builder.Services.AddDbContext<MyDBContext>(options =>
 
 Note
 Ensure you include the necessary using directives for the referenced namespaces.
+
+# Usage (Example)
+
+1. Go to HomeController
+2. Add this code
+
+```csharp
+private readonly MyDBContext _context;
+
+public UserController(MyDBContext context)
+{
+    _context = context;
+}
+```
+
+### How to get a list of records from database
+```csharp
+public IActionResult SomeMethod()
+{
+    var test = _context.Users.ToList();
+}
+```
+### How to get a single record from database with condition
+```csharp
+public IActionResult SomeMethod()
+{
+    //if not found then test is null and test is a nullable datatype
+    var test = _context.Users.FirstOrDefault(user => user.Id == 1);
+    //if not found then this code is error
+    var test2 = _context.Users.First(user => user.Id == 1);
+    //if not found then test is null and test3 is a nullable datatype
+    var test3 = _context.Users.SingleOrDefault(user => user.Id == 1);
+    //if not found then this code is error
+    var test4 = _context.Users.Single(user => user.Id == 1);
+}
+```
+### How to add new record to database (Option 1)
+```csharp
+public IActionResult SomeMethod()
+{
+    _context.Users.Add(new User
+    {
+        Firstname = "Test",
+        Lastname = "Test",
+        Email = "Test@gmail.com",
+    });
+
+    //execute your changes to database
+    _context.SaveChanges();
+}
+```
+
+### How to add new record to database (Option 2)
+```csharp
+public IActionResult SomeMethod()
+{
+    var newUser = new User
+    {
+        Firstname = "Test",
+        Lastname = "Test",
+        Email = "Test@gmail.com",
+    };
+    
+    _context.Users.Add(newUser);
+
+    //execute your changes to database
+    _context.SaveChanges();
+}
+```
+
+### How to add multiple records to database
+```csharp
+public IActionResult SomeMethod()
+{
+    var newUsers = new List<User> 
+    { 
+        new User
+        {
+            Firstname = "Test1",
+            Lastname = "Test1",
+            Email = "Test1@gmail.com"
+        },
+        new User
+        {
+            Firstname = "Test2",
+            Lastname = "Test2",
+            Email = "Test2@gmail.com"
+        }
+    };
+    
+    _context.Users.AddRange(newUsers);
+    
+    //execute your changes to database
+    _context.SaveChanges();
+}
+```
+
+### How to update a record from database
+```csharp
+public IActionResult SomeMethod()
+{
+    var user = _context.Users.FirstOrDefault(user=> user.Id == 1);
+    //if exist then proceed
+    if(user is not null)
+    {
+        user.Email = "Test3@gmail.com"; //new value
+        _context.Users.Update(user);
+        //execute your changes to database
+        _context.SaveChanges();
+    }
+}
+```
+### How to delete a record from database
+```csharp
+public IActionResult SomeMethod()
+{
+    var user1 = _context.Users.FirstOrDefault(user => user.Id == 1003);
+    if (user1 is not null)
+    {
+        _context.Remove(user1);
+        //execute your changes to database
+        _context.SaveChanges();
+    }
+}
+```
