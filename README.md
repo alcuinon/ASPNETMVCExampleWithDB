@@ -51,14 +51,8 @@ Scaffold-DbContext "Data Source=YourServerName;Initial Catalog=YourDBName;Integr
 ```
 
 ### 7. Update `appsettings.json`
-Add the following section to your `appsettings.json` file, replacing `YourDBName` with your database name:
+Add the following section to your `appsettings.json` file, replacing `YourDBName` with your database name and `YourServerName` with your server name:
 
-```json
-"ConnectionStrings": {
-    "Default": "Server=localhost;Database=YourDBName;Trusted_Connection=True;"
-}
-```
-if you do Step #6.1 then do this intead
 ```json
 "ConnectionStrings": {
     "Default": "Data Source=YourServerName;Initial Catalog=YourDBName;Integrated Security=True;Trust Server Certificate=True;"
