@@ -90,7 +90,7 @@ Ensure you include the necessary using directives for the referenced namespaces.
 ```csharp
 private readonly MyDBContext _context;
 
-public UserController(MyDBContext context)
+public HomeController(MyDBContext context)
 {
     _context = context;
 }
