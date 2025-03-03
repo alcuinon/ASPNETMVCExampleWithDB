@@ -25,6 +25,9 @@ Install the following NuGet packages:
 2. `Microsoft.EntityFrameworkCore.SqlServer`
 3. `Microsoft.EntityFrameworkCore.Tools`
 
+<img src="https://github.com/alcuinon/ASPNETMVCExampleWithDB/blob/main/Files/select_manage_nuget.gif" width="500">
+<img src="https://github.com/alcuinon/ASPNETMVCExampleWithDB/blob/main/Files/browse_nuget.gif" width="500">
+
 ### 4. Open Package Manager Console
 Navigate to **Tools -> NuGet Package Manager -> Package Manager Console** in your IDE.
 
@@ -42,6 +45,9 @@ if you see your Project Name Folder then do this, proceed to `Scaffold-DbContext
 ```powershell
 cd YourProjectName
 ```
+
+<img src="https://github.com/alcuinon/ASPNETMVCExampleWithDB/blob/main/Files/dir_and_cd.gif" width="500">
+
 Run the following command in the Package Manager Console, replacing `YourDBName` with the name of your database:
 1. `Data Source=YourServerName` Server name is located at the SQL Connect a Server
 2. `Initial Catalog=YourDBName` Change the "YourDBName" to your actual DB name
