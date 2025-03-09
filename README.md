@@ -48,9 +48,7 @@ cd YourProjectName
 
 <img src="https://github.com/alcuinon/ASPNETMVCExampleWithDB/blob/main/Files/dir_and_cd.gif" width="500">
 
-Run the following command in the Package Manager Console, replacing `YourDBName` with the name of your database:
-1. `Data Source=YourServerName` Server name is located at the SQL Connect a Server
-2. `Initial Catalog=YourDBName` Change the "YourDBName" to your actual DB name
+Run the following command in the Package Manager Console, replacing `YourDBName` with the name of your database and `YourServerName` is located at the SQL Connect a Server:
 
 ```powershell
 Scaffold-DbContext "Data Source=YourServerName;Initial Catalog=YourDBName;Integrated Security=True;Trust Server Certificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -ContextDir Context -Context MyDBContext -f
