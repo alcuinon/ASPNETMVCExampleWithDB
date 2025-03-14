@@ -1,4 +1,5 @@
 # Entity Framework Core Setup Guide
+by: Niño Alcuino
 
 ## Steps to Set Up the Project
 
