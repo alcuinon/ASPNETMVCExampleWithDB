@@ -72,14 +72,26 @@ Ensure you include the necessary using directives for the referenced namespaces.
 
 # Usage (Example)
 
-1. Go to HomeController
-2. Add this code
+1. Go to your Controller
+2. Add this code at the top of the Controller
 
 ```csharp
 private readonly MyDBContext _context;
 
 public HomeController(MyDBContext context)
 {
+    _context = context;
+}
+```
+
+# sometimes ILogger is included, and this is how you can add the MyDBContext
+```csharp
+private readonly ILogger<HomeController> _logger;
+private readonly MyDBContext _context;
+
+public HomeController(ILogger<HomeController> logger, MyDBContext context)
+{
+    _logger = logger;
     _context = context;
 }
 ```
