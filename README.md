@@ -38,8 +38,6 @@ location: right corner of Pakage Manager Console
 
 ### 6. Scaffold the Database Context
 
-<img src="https://github.com/alcuinon/ASPNETMVCExampleWithDB/blob/main/Files/dir_and_cd.gif" width="500">
-
 Run the following command in the Package Manager Console, replacing `YourDBName` with the name of your database and `YourServerName` is located at the SQL Connect a Server:
 
 ```powershell
