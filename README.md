@@ -115,6 +115,8 @@ public IActionResult SomeMethod()
     var test3 = _context.Users.SingleOrDefault(user => user.Id == 1);
     //if not found then this code is error
     var test4 = _context.Users.Single(user => user.Id == 1);
+
+    return View();
 }
 ```
 ### How to add new record to database (Option 1)
@@ -130,6 +132,8 @@ public IActionResult SomeMethod()
 
     //execute your changes to database
     _context.SaveChanges();
+
+    return View();
 }
 ```
 
@@ -148,6 +152,8 @@ public IActionResult SomeMethod()
 
     //execute your changes to database
     _context.SaveChanges();
+
+    return View();
 }
 ```
 
@@ -175,6 +181,8 @@ public IActionResult SomeMethod()
     
     //execute your changes to database
     _context.SaveChanges();
+
+    return View();
 }
 ```
 
@@ -191,6 +199,8 @@ public IActionResult SomeMethod()
         //execute your changes to database
         _context.SaveChanges();
     }
+
+    return View();
 }
 ```
 ### How to delete a record from database
@@ -204,5 +214,7 @@ public IActionResult SomeMethod()
         //execute your changes to database
         _context.SaveChanges();
     }
+
+    return View();
 }
 ```
