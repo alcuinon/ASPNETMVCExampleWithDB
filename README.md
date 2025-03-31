@@ -84,7 +84,7 @@ public HomeController(MyDBContext context)
 }
 ```
 
-# sometimes ILogger is included, and this is how you can add the MyDBContext
+### sometimes ILogger is included, and this is how you can add the MyDBContext
 ```csharp
 private readonly ILogger<HomeController> _logger;
 private readonly MyDBContext _context;
